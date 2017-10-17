@@ -83,7 +83,7 @@ class AVGRunner:
                                 c.MODEL_SAVE_DIR + 'model.ckpt',
                                 global_step=self.global_step)
                 print ('Saved models!')
-                print '-' * 30
+                print ('-' * 30)
 
             # test generator model
             if self.global_step % c.TEST_FREQ == 0:
