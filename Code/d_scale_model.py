@@ -70,11 +70,11 @@ class DScaleModel:
                 last_out_height = self.height
                 last_out_width = self.width
                 for i in range(len(self.kernel_sizes)):
-                    conv_ws.append(w([self.kernel_sizes[i],
-                                      self.kernel_sizes[i],
-                                      self.conv_layer_fms[i],
-                                      self.conv_layer_fms[i + 1]]))
-                    conv_bs.append(b([self.conv_layer_fms[i + 1]]))
+                    conv_ws.append(w([int(self.kernel_sizes[i]),
+                                      int(self.kernel_sizes[i]),
+                                      int(self.conv_layer_fms[i]),
+                                      int(self.conv_layer_fms[i + 1])]))
+                    conv_bs.append(b([int(self.conv_layer_fms[i + 1])]))
 
                     last_out_height = conv_out_size(
                         last_out_height, c.PADDING_D, self.kernel_sizes[i], 1)
@@ -91,9 +91,9 @@ class DScaleModel:
                 fc_ws = []
                 fc_bs = []
                 for i in range(len(self.fc_layer_sizes) - 1):
-                    fc_ws.append(w([self.fc_layer_sizes[i],
-                                    self.fc_layer_sizes[i + 1]]))
-                    fc_bs.append(b([self.fc_layer_sizes[i + 1]]))
+                    fc_ws.append(w([int(self.fc_layer_sizes[i]),
+                                    int(self.fc_layer_sizes[i + 1])]))
+                    fc_bs.append(b([int(self.fc_layer_sizes[i + 1])]))
 
         ##
         # Forward pass calculation
