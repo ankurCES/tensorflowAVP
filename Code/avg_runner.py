@@ -53,6 +53,13 @@ class AVGRunner:
         self.saver = tf.train.Saver(keep_checkpoint_every_n_hours=2)
         self.sess.run(tf.global_variables_initializer())
 
+        self.model_path = tf.train.latest_checkpoint(c.MODEL_SAVE_DIR, None)
+        
+        # If previous checkpoint exists
+        if self.model_path is not None:
+            self.saver.restore(self.sess, self.model_path)
+            print ('Model restored from ' + self.model_path)
+
         # if load path specified, load a saved model
         if model_load_path is not None:
             self.saver.restore(self.sess, model_load_path)
